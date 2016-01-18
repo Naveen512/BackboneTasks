@@ -5,7 +5,7 @@ var SampleExample = SampleExample || {};
 (function (SampleExample) {
 
     var Views = {}
-    var tempval={}
+
     Views.DDLViews = Backbone.View.extend({
         el: 'body',
         events: {
@@ -30,14 +30,14 @@ var SampleExample = SampleExample || {};
                 cID: !$("#CountryName :selected").val() ? -1 : parseInt($("#CountryName :selected").val()),
                 sID: !$("#StateName :selected").val() ? -1 : parseInt($("#StateName :selected").val())
             };
-
+            var self = this;
             this.collections.fetch({
                 data: serviceParam,
                 'success': function (data) {
                    
                     var source = $("#DDLHandleBar").html();
                     var template = Handlebars.compile(source);
-                    tempval = data.toJSON()[0].stateList;
+                    self.tempval = data.toJSON()[0].stateList;
                     var html = template({
                         CollectionCountry: data.toJSON()[0].countryList,
                         CollectionState: data.toJSON()[0].stateList
@@ -61,7 +61,7 @@ var SampleExample = SampleExample || {};
         ddlStateChange: function () {
             var stateValue = Number($("#StateName").val())
             if (stateValue > 0) {
-                $.each(tempval, function (key, val) {
+                $.each(this.tempval, function (key, val) {
                     if (val.StateID === stateValue) {
                         $("#StateDescriptiton").html("<h4>About Us:</h4><br>" + val.Descriptions);
                         if (val.ImageName)
