@@ -1,0 +1,24 @@
+﻿
+<script type="text/x-handlebars-template" id="DDLHandleBar">
+    <h3>Country</h3>
+    <div class="ofm-custom-select">
+        <select id="CountryName" class="select-dropdown ofm-theme-border-color">
+            <option value="-1">- SELECT -</option>
+            {{#each CollectionCountry}}
+            
+            <option value={{CountryID}} >{{CountryName}}</option>
+            {{/each}}
+        </select>
+    </div>
+    <h3>State</h3>
+    <div class="ofm2-custom-select">
+        <select id="StateName" class="select-dropdown ofm-theme-border-color">
+            <option value="-1">- SELECT -</option>
+            {{#each CollectionState}}
+            
+            <option value={{StateID}}>{{StateName}}</option>
+           
+            {{/each}}
+        </select>
+    </div>
+</script>
